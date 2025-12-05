@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YT Summarizer Settings</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container options-container">
+    <header>
+      <h1>YT Summarizer Settings</h1>
+    </header>
+
+    <main>
+      <form id="settings-form">
+        <div class="form-group">
+          <label for="api-url">API Base URL</label>
+          <input
+            type="url"
+            id="api-url"
+            placeholder="https://your-app.vercel.app"
+            required
+          >
+          <p class="help-text">The URL of your YT Summarizer web app</p>
+        </div>
+
+        <div class="form-group">
+          <label for="api-key">API Key</label>
+          <input
+            type="password"
+            id="api-key"
+            placeholder="Your EXTENSION_API_KEY value"
+            required
+          >
+          <p class="help-text">The EXTENSION_API_KEY from your .env file</p>
+        </div>
+
+        <div class="form-group">
+          <label for="default-email">Default Email</label>
+          <input
+            type="email"
+            id="default-email"
+            placeholder="you@example.com"
+          >
+          <p class="help-text">Pre-fill this email when summarizing videos</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Settings</button>
+
+        <div id="status" class="status hidden"></div>
+      </form>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

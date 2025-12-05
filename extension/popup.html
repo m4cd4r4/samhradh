@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YT Summarizer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>YT Summarizer</h1>
+    </header>
+
+    <main>
+      <div id="setup-required" class="hidden">
+        <p class="warning">Please configure the extension first.</p>
+        <button id="open-options" class="btn btn-secondary">Open Settings</button>
+      </div>
+
+      <div id="main-content" class="hidden">
+        <div class="form-group">
+          <label for="url">YouTube URL</label>
+          <input type="url" id="url" placeholder="https://youtube.com/watch?v=..." readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Send summary to</label>
+          <input type="email" id="email" placeholder="you@example.com">
+        </div>
+
+        <button id="summarize" class="btn btn-primary">
+          <span id="btn-text">Summarize & Email</span>
+          <span id="btn-loading" class="hidden">Processing...</span>
+        </button>
+
+        <div id="status" class="status hidden"></div>
+      </div>
+
+      <div id="not-youtube" class="hidden">
+        <p class="info">Navigate to a YouTube video to use this extension.</p>
+      </div>
+    </main>
+
+    <footer>
+      <a href="#" id="settings-link">Settings</a>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --yes)",
+      "Bash(npm install:*)",
+      "Bash(npx shadcn@latest init:*)",
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(cat:*)",
+      "Bash(npm run build:*)",
+      "Bash(gh auth status:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: YouTube Transcript Summarizer full-stack app\n\n- Next.js 15 with App Router, TypeScript, Tailwind CSS\n- Email OTP authentication via NextAuth.js v5\n- YouTube transcript extraction and Claude Haiku summarization\n- Upstash Redis for storage with full-text search\n- Resend for email delivery\n- Batch processing with streaming progress\n- Chrome extension (Manifest V3) with API key auth\n- Dark mode default, responsive design\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Transcript Summarizer",
+  "version": "1.0.0",
+  "description": "Summarize YouTube videos and send summaries to your email",
+  "permissions": ["activeTab", "storage", "contextMenus"],
+  "host_permissions": ["https://www.youtube.com/*", "https://youtu.be/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
