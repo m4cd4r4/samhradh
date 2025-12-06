@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# YouTube Transcript Summarizer
 
-## Getting Started
+A full-stack web app that extracts YouTube video transcripts and generates AI-powered summaries using Claude Haiku. Includes a Chrome extension for quick access.
 
-First, run the development server:
+## Features
+
+- **Transcript Extraction** - Automatically fetches transcripts from YouTube videos
+- **AI Summarization** - Generates concise summaries using Claude Haiku
+- **Batch Processing** - Process up to 10 videos at once with real-time progress
+- **Email Delivery** - Send summaries to any email address
+- **Search & History** - Full-text search across all your summaries
+- **Chrome Extension** - Summarize videos with one click while browsing YouTube
+- **Dark Mode** - Default dark theme with light mode toggle
+
+## Tech Stack
+
+- **Framework**: Next.js 15 (App Router, Server Actions, TypeScript)
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Auth**: NextAuth.js v5 with email OTP
+- **AI**: Anthropic Claude Haiku
+- **Email**: Resend
+- **Database**: Upstash Redis
+- **Deployment**: Vercel
+
+## Quick Start
+
+### 1. Clone and Install
+
+```bash
+git clone https://github.com/m4cd4r4/samhradh.git
+cd samhradh
+npm install
+```
+
+### 2. Set Up Environment Variables
+
+Copy the example file and fill in your keys:
+
+```bash
+cp .env.example .env.local
+```
+
+Required variables:
+
+| Variable | Source |
+|----------|--------|
+| `ANTHROPIC_API_KEY` | [console.anthropic.com](https://console.anthropic.com/settings/keys) |
+| `RESEND_API_KEY` | [resend.com/api-keys](https://resend.com/api-keys) |
+| `UPSTASH_REDIS_REST_URL` | [console.upstash.com](https://console.upstash.com) |
+| `UPSTASH_REDIS_REST_TOKEN` | [console.upstash.com](https://console.upstash.com) |
+| `AUTH_SECRET` | Run: `openssl rand -base64 32` |
+| `EXTENSION_API_KEY` | Run: `openssl rand -hex 32` |
+
+### 3. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Chrome Extension Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Open Chrome and go to `chrome://extensions`
+2. Enable "Developer mode" (top right)
+3. Click "Load unpacked"
+4. Select the `extension` folder from this project
+5. Click the extension icon → Options
+6. Enter your app URL and API key
 
-## Learn More
+## API Endpoints
 
-To learn more about Next.js, take a look at the following resources:
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/process` | POST | Process single video |
+| `/api/batch` | POST | Process multiple videos (streaming) |
+| `/api/history` | GET | Get paginated history |
+| `/api/history` | DELETE | Delete summary(ies) |
+| `/api/search` | GET | Search summaries |
+| `/api/extension` | POST | Extension endpoint (API key auth) |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Vercel (Recommended)
 
-## Deploy on Vercel
+```bash
+# Install Vercel CLI
+npm i -g vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Deploy
+vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Add environment variables
+vercel env add ANTHROPIC_API_KEY
+vercel env add RESEND_API_KEY
+vercel env add UPSTASH_REDIS_REST_URL
+vercel env add UPSTASH_REDIS_REST_TOKEN
+vercel env add AUTH_SECRET
+vercel env add EXTENSION_API_KEY
+
+# Deploy to production
+vercel --prod
+```
+
+## Project Structure
+
+```
+├── app/
+│   ├── api/           # API routes
+│   ├── history/       # History page
+│   ├── login/         # Login page
+│   └── page.tsx       # Main app
+├── components/        # React components
+├── emails/            # React Email templates
+├── extension/         # Chrome extension
+├── lib/               # Utilities
+│   ├── auth.ts        # OTP authentication
+│   ├── email.ts       # Resend integration
+│   ├── redis.ts       # Upstash Redis
+│   ├── summarize.ts   # Claude API
+│   ├── utils.ts       # URL parsing
+│   └── youtube.ts     # Transcript fetching
+└── types/             # TypeScript types
+```
+
+## License
+
+MIT
